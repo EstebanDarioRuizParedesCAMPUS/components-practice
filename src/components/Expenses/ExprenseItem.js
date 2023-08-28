@@ -1,21 +1,20 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 
 import ExpenseDate from "./ExpenseDate";
 import Card from "../UI/Card";
 import "./ExprenseItem.css";
 
 const ExprenseItem = ({ date, title, amount }) => {
+  const [titlle, sertTittlle] = useState(title);
 
-  const [titlle,sertTittlle] = useState(title)
-
-  const clickHandler = ()=>{
-    if(titlle == title){
-      sertTittlle('Updatedd')
-    } else if (titlle == 'Updatedd'){
-      sertTittlle(title)
+  const clickHandler = () => {
+    if (titlle === title) {
+      sertTittlle("Updatedd");
+    } else if (titlle === "Updatedd") {
+      sertTittlle(title);
     }
     console.log(titlle);
-  }
+  };
 
   return (
     <Card className="expense-item">
