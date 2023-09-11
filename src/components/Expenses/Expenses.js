@@ -1,61 +1,40 @@
 import { useState } from "react";
-import ExprenseItem from "./ExprenseItem";
 import Card from "../UI/Card";
 import ExpenseFilter from "./ExpenseFilter";
+import ExpensesList from "./ExpensesList";
 
 import "./Expenses.css";
 
 const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState("2023");
 
-  /*let filterInfoText;
-
-  if (filteredYear === "2019") {
-    filterInfoText = "2020, 2021, 2022 & 2023";
-  } else if (filteredYear === "2020") {
-    filterInfoText = "2019, 2021, 2022 & 2023";
-  } else if (filteredYear === "2021") {
-    filterInfoText = "2019, 2020, 2022 & 2023";
-  } else if (filteredYear === "2022") {
-    filterInfoText = "2019, 2020, 2021 & 2023";
-  } else if (filteredYear === "2023") {
-    filterInfoText = "2019, 2020, 2021 & 2022";
-  } else {
-    filterInfoText = "No one Year";
-  }*/
-
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
 
-  return (
-    <Card className="expenses">
-      <ExpenseFilter
-        selected={filteredYear}
-        onChangeFilter={filterChangeHandler}
-      />
+  const filteredExpense = props.item.filter((expense) => {
+    return expense.date.getFullYear() === Number(filteredYear);
+  });
 
-      <ExprenseItem
-        title={props.item[0].title}
-        amount={props.item[0].amount}
-        date={props.item[0].date}
-      />
-      <ExprenseItem
-        title={props.item[1].title}
-        amount={props.item[1].amount}
-        date={props.item[1].date}
-      />
-      <ExprenseItem
-        title={props.item[2].title}
-        amount={props.item[2].amount}
-        date={props.item[2].date}
-      />
-      <ExprenseItem
-        title={props.item[3].title}
-        amount={props.item[3].amount}
-        date={props.item[3].date}
-      />
-    </Card>
+  return (
+      <Card className="expenses">
+        <ExpenseFilter
+          selected={filteredYear}
+          onChangeFilter={filterChangeHandler}
+        />
+        <ExpensesList items={filteredExpense} />
+
+        {/*filteredExpense.length === 0 && <p>No expenses found.</p>}
+      {filteredExpense.length > 0 &&
+        filteredExpense.map((expense) => (
+          <ExprenseItem
+            key={expense.id}
+            title={expense.title}
+            amount={expense.amount}
+            date={expense.date}
+          />
+        ))*/}
+      </Card>
   );
 };
 

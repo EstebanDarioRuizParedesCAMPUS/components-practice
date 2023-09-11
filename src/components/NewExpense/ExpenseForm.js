@@ -2,46 +2,13 @@ import React, { useState } from "react";
 
 import "./ExpenseForm.css";
 
-const ExpenseForm = ({onSaveData}) => {
-  /*const [enteredTittle, setEnteredTittle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");*/
+const ExpenseForm = ({onSaveData, onCancelData}) => {
 
   const [userInput, setUserInput] = useState({
     enteredTittle: "",
     enteredAmount: "",
     enteredDate: "",
   });
-
-  /*const titlrChangeHandler = (e) => {
-    //setEnteredTittle(e.target.value);
-    setUserInput((previousState) => {
-      return {
-        ...previousState,
-        enteredTittle: e.target.value,
-      };
-    });
-  };
-
-  const amountChangeHandler = (e) => {
-    //setEnteredAmount(e.target.value);
-    setUserInput((previousState) => {
-      return {
-        ...previousState,
-        enteredAmount: e.target.value,
-      };
-    });
-  };
-
-  const dateChangeHandler = (e) => {
-    //setEnteredDate(e.target.value);
-    setUserInput((previousState) => {
-      return {
-        ...previousState,
-        enteredDate: e.target.value,
-      };
-    });
-  };*/
 
   const inputChangeHandler = (identifier, value) => {
     if (identifier === "title") {
@@ -60,7 +27,6 @@ const ExpenseForm = ({onSaveData}) => {
       });
     } else if (identifier === "Date") {
       setUserInput((previousState) => {
-        console.log(previousState.enteredDate);
         return {
           ...previousState,
           enteredDate: value,
@@ -125,6 +91,7 @@ const ExpenseForm = ({onSaveData}) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button onClick={onCancelData}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
