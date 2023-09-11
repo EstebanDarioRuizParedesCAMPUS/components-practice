@@ -40,7 +40,7 @@ const ExpenseForm = ({onSaveData, onCancelData}) => {
 
     const expenseData = {
       title: userInput.enteredTittle,
-      amount: userInput.enteredAmount,
+      amount: +userInput.enteredAmount,
       date: new Date(userInput.enteredDate)
     }
 
